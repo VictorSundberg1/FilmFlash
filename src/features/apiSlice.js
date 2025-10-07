@@ -17,19 +17,20 @@ export const tmdbApi = createApi({
     }),
     getSearchResult: build.query({
       query: ({ query, year }) => {
+        //URLSearchParams bygger ett anrop enl standard
         const searchParams = new URLSearchParams({
           query,
           include_adult: "false",
           language: "en-US",
           page: 1,
         });
+        //Finns möjlighet att ta in ett årtal och söka enbart på ett utgivnings år om vi vill i framtiden
         if (year) searchParams.append("year", year.toString());
-        // const yearString = year ? `&year=${year}` : "";
-        // return `search/movie?query=${query}&include_adult=false&language=en-US&page=1${yearString}`;
         return `search/movie?${searchParams.toString()}`;
       },
     }),
   }),
 });
 
-export const { useGetTrendingMoviesQuery } = tmdbApi;
+export const { useGetTrendingMoviesQuery, useLazyGetSearchResultQuery } =
+  tmdbApi;

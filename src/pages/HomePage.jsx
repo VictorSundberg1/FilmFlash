@@ -11,15 +11,14 @@ function HomePage() {
   if (error) return <h1>Error</h1>;
   return (
     <>
-      <SearchBar />
-      {/* {movies.map((movie) => (
-				<div key={movie.id}>
-					<h1>{movie.title}</h1>
-				</div>
-			))}
-			<div>
-				<h1>Content</h1>
-			</div> */}
+      {movies.map((movie) => (
+        <div key={movie.id}>
+          <h1>{movie.title}</h1>
+        </div>
+      ))}
+      <div>
+        <h1>Content</h1>
+      </div>
     </>
   );
 }
