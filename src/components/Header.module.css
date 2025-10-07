@@ -75,7 +75,7 @@
 
 /* Nav styles */
 nav a {
-  margin-right: 2rem;
+  margin-left: 3rem;
   text-decoration: none;
   color: var(--lightgold);
   transition: color 0.2s ease;
