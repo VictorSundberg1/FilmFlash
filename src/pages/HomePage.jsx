@@ -1,3 +1,4 @@
+import MoviesFrame from '../components/MoviesFrame';
 import { useGetTrendingMoviesQuery } from '../features/apiSlice';
 import './HomePage.css';
 
@@ -9,16 +10,9 @@ function HomePage() {
 	if (isLoading) return <h1>Loading..</h1>;
 	if (error) return <h1>Error</h1>;
 	return (
-		<>
-			{movies.map((movie) => (
-				<div key={movie.id}>
-					<h1>{movie.title}</h1>
-				</div>
-			))}
-			<div>
-				<h1>Content</h1>
-			</div>
-		</>
+		<div className="mainContainer">
+			<MoviesFrame movies={movies} />
+		</div>
 	);
 }
 
