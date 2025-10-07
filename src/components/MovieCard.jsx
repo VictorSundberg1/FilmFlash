@@ -8,14 +8,14 @@ function MovieCard({ movie }) {
 
 	return (
 		<Link to={`/details/${id}`} className="movieCardLink">
-			<div className="movieCard">
+			<main className="movieCard">
 				<img src={imageUrl} alt={title} className="movieCardPoster" />
 				<section className="textSection">
 					<h1 className="movieCardTitle">{title}</h1>
 					<p className="movieCardOverview">{overview}</p>
 					<p className="movieCardPriceTag">49kr</p>
 				</section>
-			</div>
+			</main>
 		</Link>
 	);
 }

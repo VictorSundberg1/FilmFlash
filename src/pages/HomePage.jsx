@@ -11,7 +11,7 @@ function HomePage() {
 	if (error) return <h1>Error</h1>;
 	return (
 		<div className="mainContainer">
-			<MoviesFrame movies={movies} />
+			<MoviesFrame movies={movies} title={'Trending'} limit={6} />
 		</div>
 	);
 }

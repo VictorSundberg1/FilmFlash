@@ -1,14 +1,16 @@
 import MovieCard from './MovieCard';
 import './MoviesFrame.css';
 
-function MoviesFrame({ movies }) {
+function MoviesFrame({ movies, title, limit }) {
+	const limitedMovies = limit ? movies.slice(0, limit) : movies;
+
 	return (
 		<main className="flexContainer">
 			<section className="containerTitle">
-				<h1>Trending</h1>
+				<h1>{title}</h1>
 			</section>
 			<section className="movieCardContainer">
-				{movies.slice(0, 6).map((movie) => (
+				{limitedMovies.map((movie) => (
 					<MovieCard key={movie.id} movie={movie} />
 				))}
 			</section>
