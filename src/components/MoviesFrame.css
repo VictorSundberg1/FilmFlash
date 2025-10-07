@@ -19,3 +19,8 @@
 	font-size: var(--font-size-lg);
 	text-shadow: 0 2px 4px rgba(255, 209, 141, 0.4);
 }
+@media (max-width: 560px) {
+	.movieCardContainer {
+		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	}
+}
