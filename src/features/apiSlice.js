@@ -1,4 +1,4 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 
@@ -18,7 +18,22 @@ export const tmdbApi = createApi({
     getMovieDetails: build.query({
       query: (movieId) => `movie/${movieId}?language=en-US`,
     }),
+    getSearchResult: build.query({
+      query: ({ query, year }) => {
+        //URLSearchParams bygger ett anrop enl standard
+        const searchParams = new URLSearchParams({
+          query,
+          include_adult: "false",
+          language: "en-US",
+          page: 1,
+        });
+        //Finns möjlighet att ta in ett årtal och söka enbart på ett utgivnings år om vi vill i framtiden
+        if (year) searchParams.append("year", year.toString());
+        return `search/movie?${searchParams.toString()}`;
+      },
+    }),
   }),
 });
 
-export const { useGetTrendingMoviesQuery, useGetMovieDetailsQuery } = tmdbApi;
+export const { useGetTrendingMoviesQuery, useLazyGetSearchResultQuery, useGetMovieDetailsQuery } =
+  tmdbApi;

@@ -1,20 +1,18 @@
 import { Outlet } from 'react-router';
+import Header from './components/Header';
+import Footer from './components/Footer';
 import './RootLayout.css';
 
 function RootLayout() {
 	return (
 		<>
-			<header>
-				<h1>Header</h1>
-			</header>
+			<Header/>
 
 			<main>
 				<Outlet />
 			</main>
 
-			<footer>
-				<h1>footer</h1>
-			</footer>
+			<Footer/>
 		</>
 	);
 }
