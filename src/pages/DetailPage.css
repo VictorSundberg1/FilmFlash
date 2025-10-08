@@ -1,0 +1,216 @@
+:root{
+    background-color: var(--background);
+}
+.div-container {
+  background-color: var(--background);
+  width: 99%;
+  height: 70%;
+  min-height: calc(100vh - 380px);
+  border-radius: 1rem;
+  border: 0.2rem solid var(--darkgold);
+  box-shadow: var(--shadow);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  color: var(--lightgold);
+  overflow: hidden;
+}
+
+.title-img {
+  height: 60vh;
+  padding: 1rem;
+}
+
+.film-title {
+  color: var(--lightgold);
+  font-size: var(--font-size-2xl);
+  font-weight: bold;
+  z-index: 4;
+  margin-left: 1rem;
+}
+
+.film-img {
+  width: 22%;
+  max-height: 80%;
+  max-width: 25rem;
+  border-radius: 1rem;
+  position: relative;
+  object-fit: cover;
+  z-index: 3;
+  margin-left: 0.5rem;
+}
+
+.bd-film-img {
+  width: 99%;
+  height: 20%;
+  position: absolute;
+  top: 1;
+  left: 10%;
+  object-fit: cover;
+  box-shadow: 2px 7px 10px 1px rgb(75, 64, 64);
+  z-index: 2;
+  filter: opacity(0.5);
+}
+
+.title-img::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.8));
+}
+
+.back-btn {
+  position: absolute;
+  bottom: 0;
+  left: 1%;
+  background-color: var(--darkgold);
+  border-radius: 0.8rem;
+  margin: 1rem;
+  cursor: pointer;
+  z-index: 5;
+  transition: background-color 0.3s ease;
+}
+
+.back-btn:hover {
+  background-color: var(--lightgold);
+}
+.about-film {
+  position: absolute;
+  top: 33%;
+  left: 23%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  max-width: 50%;
+}
+.film-details {
+  line-height: 1.5;
+  margin-bottom: 0.6rem;
+}
+
+.film-desc {
+  color: #ddd;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  max-width: 80%;
+}
+
+.about-film a {
+  color: var(--darkgold);
+  text-decoration: none;
+  margin-right: 2rem;
+  transition: color 0.3s ease;
+}
+
+.about-film a:hover {
+  color: var(--lightgold);
+}
+
+.addCart-container {
+  position: absolute;
+  top: 43%;
+  right: 5%;
+  bottom: 5%;
+  width: 20%;
+  background-color: var(--background);
+  border-radius: 1rem;
+  box-shadow: var(--shadow);
+  padding: 2rem;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-height: 0;
+}
+.cart-title {
+  font-size: var(--font-size-3xl);
+  text-align: center;
+  margin-bottom: 0.5rem;
+  overflow-wrap: break-word;
+  max-width: 100%;
+  margin-top: 0;
+}
+
+.price-tag {
+  font-size: var(--font-size-xl);
+  text-align: center;
+  font-weight: bold;
+  color: var(--darkgold);
+}
+
+.addCart-container ul {
+   flex: 1;
+   margin: 1rem 0;
+  }
+
+.addCart-container li {
+  margin-top: 0.5rem;
+  text-align: left;
+  color: var(--darkgold);
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+.addCart-btn {
+  width: 100%;
+  background-color: var(--darkgrey);
+  color: #ddd;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.addCart-btn:hover {
+  background-color: var(--darkgold);
+  color: var(--background);
+}
+
+@media (max-width: 768px) {
+  .div-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .addCart-container {
+    position: static;
+    width: 50%;
+    max-width: none;
+    margin-bottom: 1rem;
+    margin-top: 45%;
+    padding: 0.5rem;
+  }
+
+  .about-film {
+    max-width: 100%;
+    width: 100vw;
+    position: absolute;
+    top: 30%;
+    left: 0;
+    z-index: 3;
+  }
+
+  .film-details {
+    width: 70%;
+  }
+
+  .title-img {
+    height: 50vh;
+    flex-direction: column;
+    width: 100%;
+    padding: 1rem;
+  }
+
+  .film-img {
+    width: 30%;
+    height: auto;
+  }
+
+  .bd-film-img {
+    height: 15%;
+  }
+}
