@@ -1,0 +1,22 @@
+.search-bar {
+  display: flex;
+  border-radius: 12px;
+  border: 1px solid var(--darkgrey);
+  padding: 0.5rem;
+  box-shadow: var(--shadow);
+}
+
+.search-bar input {
+  flex: 1;
+  border: none;
+  font-size: var(--font-size-lg);
+}
+
+.search-bar input:focus {
+  outline: none;
+  border: none;
+  box-shadow: none;
+}
+.search-bar .icon-button {
+  padding: 0.5rem;
+}
