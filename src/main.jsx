@@ -8,6 +8,8 @@ import HomePage from "./pages/HomePage.jsx";
 import MoviePage from "./pages/MoviePage.jsx";
 import DetailPage from "./pages/DetailPage.jsx";
 import CheckoutPage from "./pages/CheckoutPage.jsx";
+import ReceiptPage from "./pages/ReceiptPage.jsx";
+
 
 const router = createHashRouter([
   {
@@ -29,6 +31,10 @@ const router = createHashRouter([
       {
         path: "/checkout",
         element: <CheckoutPage />,
+      },
+      {
+        path: "/receipt",
+        element: <ReceiptPage />,
       },
     ],
   },
