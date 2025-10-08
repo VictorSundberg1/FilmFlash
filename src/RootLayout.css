@@ -28,9 +28,20 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  height: 100%;
 }
 
 body {
   background: var(--background);
   color: var(--lightgold);
+}
+
+.mainContent {
+  margin: 3% 0 3% 0;
+  padding-bottom: 12rem;
+}
+
+.mainContent {
+  margin: 3% 0 3% 0;
+  padding-bottom: 12rem;
 }

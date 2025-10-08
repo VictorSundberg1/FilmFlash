@@ -4,12 +4,16 @@
   border: 1px solid var(--darkgrey);
   padding: 0.5rem;
   box-shadow: var(--shadow);
+  background: var(--lightgold);
+  width: 50%;
+  justify-self: center;
 }
 
 .search-bar input {
   flex: 1;
   border: none;
   font-size: var(--font-size-lg);
+  background-color: var(--lightgold);
 }
 
 .search-bar input:focus {
@@ -19,4 +23,10 @@
 }
 .search-bar .icon-button {
   padding: 0.5rem;
+}
+
+@media (max-width: 680px) {
+  .search-bar{
+  width: 80%;
+  }
 }

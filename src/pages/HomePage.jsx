@@ -1,4 +1,4 @@
-
+import { Link, useNavigate } from 'react-router';
 import MoviesFrame from '../components/MoviesFrame';
 import { useGetTrendingMoviesQuery } from '../features/apiSlice';
 import './HomePage.css';
