@@ -1,0 +1,14 @@
+.genreButtons {
+	display: flex;
+	justify-content: center;
+	gap: 8px;
+}
+.genreButtons button {
+	font-size: var(--font-size-lg);
+	border: none;
+	background-color: var(--lightgrey);
+	color: white;
+	border-radius: 12px;
+	padding: 8px;
+	cursor: pointer;
+}
