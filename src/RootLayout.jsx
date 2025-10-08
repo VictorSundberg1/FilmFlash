@@ -8,7 +8,7 @@ function RootLayout() {
 		<>
 			<Header/>
 
-			<main>
+			<main className='mainContent'>
 				<Outlet />
 			</main>
 
