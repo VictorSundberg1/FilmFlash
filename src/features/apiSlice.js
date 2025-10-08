@@ -3,17 +3,18 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 const API_KEY = import.meta.env.VITE_API_KEY;
 
 export const tmdbApi = createApi({
-  reducerPath: 'tmdbApi',
+  reducerPath: "tmdbApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://api.themoviedb.org/3/',
+    baseUrl: "https://api.themoviedb.org/3/",
     prepareHeaders: (headers) => {
-      headers.set('accept', 'application/json');
-      headers.set('Authorization', `Bearer ${API_KEY}`);
+      headers.set("accept", "application/json");
+      headers.set("Authorization", `Bearer ${API_KEY}`);
     },
   }),
+  //TODO: Baka in priset i alla endpoints som tar hem filmer med transformResponse?
   endpoints: (build) => ({
     getTrendingMovies: build.query({
-      query: () => 'trending/movie/day?language=en-US',
+      query: () => "trending/movie/day?language=en-US",
     }),
     getMovieDetails: build.query({
       query: (movieId) => `movie/${movieId}?language=en-US`,
@@ -35,5 +36,8 @@ export const tmdbApi = createApi({
   }),
 });
 
-export const { useGetTrendingMoviesQuery, useLazyGetSearchResultQuery, useGetMovieDetailsQuery } =
-  tmdbApi;
+export const {
+  useGetTrendingMoviesQuery,
+  useLazyGetSearchResultQuery,
+  useGetMovieDetailsQuery,
+} = tmdbApi;
