@@ -22,7 +22,15 @@
 	--font-size-3xl: 1.875rem;
 	--font-size-4xl: 2.25rem;
 }
+
+html,
 body {
-	margin: 0;
-	background-color: var(--background);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--background);
+  color: var(--lightgold);
 }

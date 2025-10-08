@@ -1,0 +1,27 @@
+.footer {
+  background: var(--darkgrey);
+  color: var(--lightgold);
+  padding: 1rem 0;
+  text-align: center;
+  border-top: 1px solid #333;
+}
+
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.logo {
+  width:100px;
+  margin-bottom: 0.5rem;
+}
+
+.logo:hover {
+  transform: translateY(-2px);
+}
+
+.copy {
+  margin-top: 0.5rem;
+  font-size: 12px;
+  color: #777;
+}
