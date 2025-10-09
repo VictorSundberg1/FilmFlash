@@ -3,11 +3,10 @@
   color: var(--lightgold);
   text-align: center;
   border-top: 1px solid #333;
-  position: fixed;
-  bottom: 0;
-  left: 0;
+  flex-shrink: 0;
   width: 100%;
- z-index: 5;
+  z-index: 5;
+  padding-bottom: 1rem;
 }
 
 .inner {
