@@ -6,10 +6,8 @@
  * @param {number} movie.popularity - Popularity score.
  * @param {number} movie.vote_average - Average user rating (0–10).
  *
- * @returns {{ value: number, formatted: string }}
- * An object containing:
- * - `value`: the numeric price rounded to the nearest 0.5.
- * - `formatted`: the price formatted as a string (e.g., "125.50 kr").
+ * @returns { number}
+ * Returns the calculated price of the movie.
  */
 export const calculateMoviePrice = (movie) => {
   const BASE_PRICE = 150;
@@ -68,11 +66,8 @@ export const calculateMoviePrice = (movie) => {
   // console.log("Age: ", age);
   // console.log("Age adjustment:", ageModifier);
 
-  price = Math.round(price * 2) / 2; //Avrunda
+  //Avrunda
+  price = Math.round(price * 2) / 2;
 
-  return { value: price, formatted: formatPrice(price) };
-};
-
-export const formatPrice = (price) => {
-  return `${price.toFixed(2)} kr`;
+  return price;
 };

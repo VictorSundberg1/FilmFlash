@@ -1,12 +1,11 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  totalPrice: 0,
   movies: [],
 };
 
 const cartSlice = createSlice({
-  name: 'cart',
+  name: "cart",
   initialState,
   reducers: {
     addMovie: (state, action) => {
@@ -14,22 +13,18 @@ const cartSlice = createSlice({
       const existingMovie = state.movies.find(
         (element) => element.id === movie.id
       );
-
       if (!existingMovie) {
-        state.movies.push({ ...movie, price: 49 });
+        state.movies.push(movie);
       } else {
-        console.log('already exist');
+        console.log("already exist");
       }
     },
     removeMovie: (state, action) => {
       const id = action.payload;
-      state.movies = state.movies.filter(
-        (movie) => movie.id !== id
-      );
+      state.movies = state.movies.filter((movie) => movie.id !== id);
     },
     clearCart: (state) => {
       state.movies = [];
-      state.totalPrice = 0;
     },
   },
 });

@@ -1,11 +1,9 @@
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { calculateMoviePrice } from "../utils/priceHandler";
 import { addMovie } from "../features/cartSlice";
 
 export default function DetailCard({ movie }) {
   const navigate = useNavigate();
-  const price = calculateMoviePrice(movie).formatted;
   const dispatch = useDispatch();
 
   const handleAddToCart = () => {
@@ -50,7 +48,7 @@ export default function DetailCard({ movie }) {
 
       <section className='addCart-container'>
         <h2 className='cart-title'>{movie.title}</h2>
-        <h1 className='price-tag'>{price}</h1>
+        <h1 className='price-tag'>{movie.price.toFixed(2)}</h1>
         <ul>
           <li>Streaminglink right away</li>
           <li>Exclusive offers!</li>
