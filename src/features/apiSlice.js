@@ -11,7 +11,6 @@ export const tmdbApi = createApi({
       headers.set("Authorization", `Bearer ${API_KEY}`);
     },
   }),
-  //TODO: Baka in priset i alla endpoints som tar hem filmer med transformResponse?
   endpoints: (build) => ({
     getTrendingMovies: build.query({
       query: () => "trending/movie/day?language=en-US",
@@ -33,11 +32,16 @@ export const tmdbApi = createApi({
         return `search/movie?${searchParams.toString()}`;
       },
     }),
+    getMoviesByGenre: build.query({
+      query: ({ genreId, page = 1 }) =>
+        `discover/movie?with_genres=${genreId}&language=en-US&page=${page}`,
+    }),
   }),
 });
 
 export const {
   useGetTrendingMoviesQuery,
   useLazyGetSearchResultQuery,
+  useGetMoviesByGenreQuery,
   useGetMovieDetailsQuery,
 } = tmdbApi;

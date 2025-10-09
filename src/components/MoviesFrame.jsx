@@ -1,7 +1,7 @@
 import MovieCard from './MovieCard';
 import './MoviesFrame.css';
 
-function MoviesFrame({ movies, title, limit }) {
+function MoviesFrame({ movies, title, limit, onNextPage, onPrevPage, page }) {
 	const limitedMovies = limit ? movies.slice(0, limit) : movies;
 
 	return (
@@ -14,6 +14,15 @@ function MoviesFrame({ movies, title, limit }) {
 					<MovieCard key={movie.id} movie={movie} />
 				))}
 			</section>
+			{page ? (
+				<section className="pageSection">
+					<button onClick={onPrevPage} disabled={page <= 1}>
+						-
+					</button>
+					<p className="pageIndicator">Page {page}</p>
+					<button onClick={onNextPage}>+</button>
+				</section>
+			) : null}
 		</main>
 	);
 }

@@ -27,9 +27,13 @@ const cartSlice = createSlice({
         (movie) => movie.id !== id
       );
     },
+    clearCart: (state) => {
+      state.movies = [];
+      state.totalPrice = 0;
+    },
   },
 });
 
-export const { addMovie, removeMovie } = cartSlice.actions;
+export const { addMovie, removeMovie, clearCart } = cartSlice.actions;
 
 export default cartSlice.reducer;

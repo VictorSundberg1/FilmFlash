@@ -1,9 +1,16 @@
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 import { calculateMoviePrice } from "../utils/priceHandler";
+import { addMovie } from "../features/cartSlice";
 
 export default function DetailCard({ movie }) {
   const navigate = useNavigate();
   const price = calculateMoviePrice(movie).formatted;
+  const dispatch = useDispatch();
+
+  const handleAddToCart = () => {
+    dispatch(addMovie(movie));
+  };
 
   return (
     <div className='div-container'>
@@ -48,7 +55,7 @@ export default function DetailCard({ movie }) {
           <li>Streaminglink right away</li>
           <li>Exclusive offers!</li>
         </ul>
-        <button className='addCart-btn' onClick={() => navigate("/checkout")}>
+        <button className='addCart-btn' onClick={handleAddToCart}>
           Add to Cart
         </button>
       </section>

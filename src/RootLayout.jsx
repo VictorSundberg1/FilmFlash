@@ -7,12 +7,13 @@ function RootLayout() {
 	return (
 		<>
 			<Header/>
-
+		<div className='wrapper'>
 			<main className='mainContent'>
 				<Outlet />
 			</main>
 
 			<Footer/>
+			</div>
 		</>
 	);
 }

@@ -32,16 +32,18 @@ body {
 }
 
 body {
+  display: flex;
+  flex-direction: column;
   background: var(--background);
   color: var(--lightgold);
 }
 
-.mainContent {
-  margin: 3% 0 3% 0;
-  padding-bottom: 12rem;
+.wrapper {
+  flex: 1;
+  min-height: 100vh;
 }
 
 .mainContent {
   margin: 3% 0 3% 0;
-  padding-bottom: 12rem;
+  padding-bottom: 2rem;
 }

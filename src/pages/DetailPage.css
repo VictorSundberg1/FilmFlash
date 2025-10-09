@@ -13,6 +13,7 @@
   overflow: hidden;
   justify-self: center;
   justify-content: center;
+  padding: 0 0 10rem 0;
 }
 
 .title-img {
@@ -30,11 +31,11 @@
 
 .film-img {
   width: 22%;
-  max-height: 80%;
+  max-height: 75vh;
   max-width: 25rem;
   border-radius: 1rem;
   position: relative;
-  object-fit: cover;
+  object-fit: contain;
   z-index: 3;
   margin-left: 0.5rem;
 }
@@ -49,16 +50,6 @@
   box-shadow: 2px 7px 10px 1px rgb(75, 64, 64);
   z-index: 2;
   filter: opacity(0.5);
-}
-
-.title-img::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.8));
 }
 
 .back-btn {
