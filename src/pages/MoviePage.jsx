@@ -13,7 +13,9 @@ function MoviePage() {
 
 	if (movieState?.error) return <h1>Something went wrong...</h1>;
 
-	const moviesToShow = movieState?.data?.results || genreMovies;
+	const moviesToShow = movieState
+		? movieState?.data?.results || []
+		: genreMovies;
 
 	return (
 		<div className="movie-page">
