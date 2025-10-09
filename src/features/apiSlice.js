@@ -15,6 +15,9 @@ export const tmdbApi = createApi({
 		getTrendingMovies: build.query({
 			query: () => 'trending/movie/day?language=en-US',
 		}),
+		getMovieDetails: build.query({
+			query: (movieId) => `movie/${movieId}?language=en-US`,
+		}),
 		getSearchResult: build.query({
 			query: ({ query, year }) => {
 				//URLSearchParams bygger ett anrop enl standard
@@ -40,4 +43,5 @@ export const {
 	useGetTrendingMoviesQuery,
 	useLazyGetSearchResultQuery,
 	useGetMoviesByGenreQuery,
+	useGetMovieDetailsQuery,
 } = tmdbApi;
