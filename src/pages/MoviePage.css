@@ -6,9 +6,9 @@
 .genreButtons button {
 	font-size: var(--font-size-lg);
 	border: none;
-	background-color: var(--lightgrey);
+	background-color: var(--cardgrey);
 	color: white;
-	border-radius: 12px;
+	border-radius: 12px 12px 0 0;
 	padding: 8px 12px;
 	cursor: pointer;
 }

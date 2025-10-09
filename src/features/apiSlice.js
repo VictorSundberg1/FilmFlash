@@ -30,8 +30,8 @@ export const tmdbApi = createApi({
 			},
 		}),
 		getMoviesByGenre: build.query({
-			query: (genreId) =>
-				`discover/movie?with_genres=${genreId}&language=en-US&page=1`,
+			query: ({ genreId, page = 1 }) =>
+				`discover/movie?with_genres=${genreId}&language=en-US&page=${page}`,
 		}),
 	}),
 });
