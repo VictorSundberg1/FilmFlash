@@ -19,6 +19,31 @@
 	font-size: var(--font-size-lg);
 	text-shadow: 0 2px 4px rgba(255, 209, 141, 0.4);
 }
+.pageSection {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	margin: 10px;
+}
+.pageSection button {
+	height: 30px;
+	width: 30px;
+	border: none;
+	background-color: var(--darkgold);
+	border-radius: 50%;
+	font-size: var(--font-size-lg);
+	font-weight: bold;
+	cursor: pointer;
+	transition: 0.2s;
+}
+.pageSection button:hover {
+	box-shadow: 2px 3px 15px rgba(225, 167, 79, 0.9);
+}
+.pageIndicator {
+	margin: 12px;
+}
 @media (max-width: 560px) {
 	.movieCardContainer {
 		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
