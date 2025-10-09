@@ -19,7 +19,9 @@ function DetailPage() {
    * för att inte få olika priser i olika vyer. Följer inte priset med (ex. via deep-link) används datan från
    * details för att beräkna priset.
    * **/
-  const price = location.state?.price || calculateMoviePrice(movie);
+  const price =
+    location.state?.price ||
+    (movieData ? calculateMoviePrice(movieData) : null);
   const movie = { ...movieData, price: price };
 
   return <DetailCard movie={movie} price={price} />;
