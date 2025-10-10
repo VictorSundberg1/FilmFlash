@@ -1,58 +1,59 @@
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router';
-import { addMovie } from '../features/cartSlice';
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
+import { addMovie } from "../features/cartSlice";
 
 export default function DetailCard({ movie }) {
   const navigate = useNavigate();
-  const price = 49;
   const dispatch = useDispatch();
 
   const handleAddToCart = () => {
     dispatch(addMovie(movie));
-  }
+  };
 
   return (
-    <div className="div-container">
-      <section className="title-img">
-        <h3 className="film-title">{movie.title}</h3>
+    <div className='div-container'>
+      <section className='title-img'>
+        <h3 className='film-title'>{movie.title}</h3>
         <img
-          className="film-img"
+          className='film-img'
           src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
-          alt="moviecover"
+          alt='moviecover'
         />
         <img
-          className="bd-film-img"
+          className='bd-film-img'
           src={`https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`}
-          alt="moviebackground"
+          alt='moviebackground'
         />
       </section>
 
-      <button className="back-btn" onClick={() => navigate('/')}>
+      <button className='back-btn' onClick={() => navigate("/")}>
         🔙
       </button>
 
-      <section className="about-film">
+      <section className='about-film'>
         <h3>About</h3>
-        <span className="film-details">
-          {movie.release_date} ‣{' '}
-          {movie.genres?.map((genre) => genre.name).join(', ')} ‣{' '}
+        <span className='film-details'>
+          {movie.release_date} ‣{" "}
+          {movie.genres?.map((genre) => genre.name).join(", ")} ‣{" "}
           {movie.vote_average}/10
         </span>
-        <p className="film-desc">{movie.overview}</p>
+        <p className='film-desc'>{movie.overview}</p>
 
         {/*exempel, lägg till sen*/}
-        <span><a href="#">Director</a>
-        <a href="#">Screenplay</a></span>
+        <span>
+          <a href='#'>Director</a>
+          <a href='#'>Screenplay</a>
+        </span>
       </section>
 
-      <section className="addCart-container">
-        <h2 className="cart-title">{movie.title}</h2>
-        <h1 className="price-tag">{price} sek</h1>
+      <section className='addCart-container'>
+        <h2 className='cart-title'>{movie.title}</h2>
+        <h1 className='price-tag'>{movie.price.toFixed(2)}</h1>
         <ul>
           <li>Streaminglink right away</li>
           <li>Exclusive offers!</li>
         </ul>
-        <button className="addCart-btn" onClick={handleAddToCart}>
+        <button className='addCart-btn' onClick={handleAddToCart}>
           Add to Cart
         </button>
       </section>

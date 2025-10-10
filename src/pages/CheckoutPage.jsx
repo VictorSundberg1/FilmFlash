@@ -9,13 +9,13 @@ function CheckoutPage() {
   const subtotal = movies.reduce((s, m) => s + (m.price ?? 49), 0);
 
   return (
-    <div className="checkout-page">
+    <div className='checkout-page'>
       <h1>Checkout</h1>
       <p>Articlaes: {movies.length}</p>
       <p>Total: {subtotal.toFixed(2)} kr</p>
 
       <button
-        onClick={() => { 
+        onClick={() => {
           navigate("/receipt");
         }}
       >
