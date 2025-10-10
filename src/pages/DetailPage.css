@@ -1,6 +1,6 @@
-.detail-page{
+.detail-page {
   height: 100vh;
-  
+
   margin-bottom: 10rem;
 }
 
@@ -226,7 +226,7 @@
     font-size: var(--font-size-lg);
   }
 
-  .back-btn{
+  .back-btn {
     position: relative;
     margin-bottom: 0;
   }

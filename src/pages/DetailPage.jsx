@@ -10,11 +10,10 @@ function DetailPage() {
   if (isLoading) return <h1>Loading..</h1>;
   if (error) return <h1>Error</h1>;
 
-  return(
-  <div className='detail-page'>
-   <DetailCard movie={movie} />
-   </div>
-
+  return (
+    <div className="detail-page">
+      <DetailCard movie={movie} />
+    </div>
   );
 }
 

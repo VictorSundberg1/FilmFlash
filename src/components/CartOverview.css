@@ -1,8 +1,8 @@
-.checkout-box{
-    height: auto;
-    min-height: 100%;
-    position: relative;
-    overflow: visible;
+.checkout-box {
+  height: auto;
+  min-height: 100%;
+  position: relative;
+  overflow: visible;
 }
 
 .orderview-box {

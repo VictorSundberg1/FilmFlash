@@ -130,13 +130,13 @@
 }
 
 @media (max-width: 780px) {
-    .cartframe-box{
-        width: 95%;
-    }
+  .cartframe-box {
+    width: 95%;
+  }
 
-    .cartframe-container ul{
-        justify-items: center;
-    }
+  .cartframe-container ul {
+    justify-items: center;
+  }
 
   .cartframe-container li {
     flex-direction: column;

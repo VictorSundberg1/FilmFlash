@@ -1,8 +1,8 @@
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router";
-import "./CheckoutPage.css";
-import CartOverview from "../components/CartOverview";
-import CartFrame from "../components/CartFrame";
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router';
+import './CheckoutPage.css';
+import CartOverview from '../components/CartOverview';
+import CartFrame from '../components/CartFrame';
 
 function CheckoutPage() {
   const movies = useSelector((s) => s.cart.movies || []);
@@ -14,7 +14,6 @@ function CheckoutPage() {
     <div className="checkout-container">
       <CartFrame />
     </div>
-
   );
 }
 
