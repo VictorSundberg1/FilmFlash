@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { removeMovie } from '../features/cartSlice';
+import DeleteIcon from '@mui/icons-material/Delete';
 import './CartDropdown.css';
 
 export default function CartDropdown() {
@@ -29,7 +30,7 @@ export default function CartDropdown() {
                     className="remove-btn"
                     onClick={() => handleRemove(movie.id)}
                   >
-                    X
+                    <DeleteIcon />
                   </button>
                 </div>
               </li>
