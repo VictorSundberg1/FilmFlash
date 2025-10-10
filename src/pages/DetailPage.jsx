@@ -24,7 +24,11 @@ function DetailPage() {
     (movieData ? calculateMoviePrice(movieData) : null);
   const movie = { ...movieData, price: price };
 
-  return <DetailCard movie={movie} price={price} />;
+  return (
+    <div className="detail-page">
+      <DetailCard movie={movie} price={price} />
+    </div>
+  );
 }
 
 export default DetailPage;

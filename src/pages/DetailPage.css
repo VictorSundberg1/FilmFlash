@@ -1,7 +1,13 @@
+.detail-page {
+  height: 100vh;
+
+  margin-bottom: 10rem;
+}
+
 .div-container {
   background-color: var(--background);
   width: 90%;
-  height: 70%;
+  height: auto;
   min-height: calc(100vh - 380px);
   border-radius: 1rem;
   border: 0.2rem solid var(--darkgold);
@@ -13,7 +19,6 @@
   overflow: hidden;
   justify-self: center;
   justify-content: center;
-  padding: 0 0 10rem 0;
 }
 
 .title-img {
@@ -180,13 +185,14 @@
 
   .about-film {
     max-width: 100%;
-    width: 90%;
+    width: 100%;
     position: relative;
     left: 0;
     z-index: 3;
     margin-bottom: 1rem;
     margin-top: 0;
     order: 2;
+    padding: 1rem 0 1rem 2rem;
   }
 
   .film-details {
@@ -194,26 +200,33 @@
   }
 
   .title-img {
-    height: 20vh;
+    height: 100%;
     flex-direction: column;
     width: 100%;
     order: 1;
     margin-bottom: 0;
+    position: relative;
+    z-index: 1;
   }
 
   .film-img {
     width: 30%;
+    max-width: 75vh;
+    position: relative;
+    object-fit: contain;
+    z-index: 3;
+    order: 1;
   }
 
   .bd-film-img {
-    height: 13%;
+    height: 50%;
   }
 
   .cart-title {
     font-size: var(--font-size-lg);
   }
 
-  .back-btn{
+  .back-btn {
     position: relative;
     margin-bottom: 0;
   }

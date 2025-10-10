@@ -25,25 +25,26 @@
 
 html,
 body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  height: 100%;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	height: 100%;
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-  background: var(--background);
-  color: var(--lightgold);
+	display: flex;
+	flex-direction: column;
+	background: var(--background);
+	color: var(--lightgold);
 }
 
 .wrapper {
-  flex: 1;
-  min-height: 100vh;
+	flex: 1;
+	height: 100vh;
 }
 
 .mainContent {
-  margin: 3% 0 3% 0;
-  padding-bottom: 2rem;
+	margin: 5rem 0 5rem 0;
+	position: relative;
 }
+
