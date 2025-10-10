@@ -7,7 +7,6 @@ import CartOverview from './CartOverview';
 export default function CartFrame() {
   const dispatch = useDispatch();
   const { movies } = useSelector((state) => state.cart);
-  const price = 49;
 
   const handleRemove = (id) => {
     dispatch(removeMovie(id));
@@ -45,7 +44,7 @@ export default function CartFrame() {
                         <p className="cartframe-desc">{movie.overview}</p>
                       </div>
                       <div className="bottom-actions">
-                        <span className="cartframe-price">{price}:-</span>
+                        <span className="cartframe-price">{movie.price.toFixed(2)}:-</span>
                         <button
                           className="cartframe-removeBtn"
                           onClick={() => handleRemove(movie.id)}

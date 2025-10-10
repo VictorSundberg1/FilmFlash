@@ -36,9 +36,9 @@ export default function ReceiptPage() {
   const orderDate = useMemo(() => new Date(), []);
 
   // Empty cart
-  useEffect(() => {
-    dispatch(clearCart());
-  }, []);
+ // useEffect(() => {
+   // dispatch(clearCart());
+  //}, []);
 
   return (
     <div className='receipt-page'>

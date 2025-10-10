@@ -1,11 +1,12 @@
 import './CartOverview.css';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
+import { selectCartTotalPrice } from '../features/selectors';
 
 export default function CartOverview() {
   const {} = useSelector((state) => state.cart);
   const navigate = useNavigate();
-  const totalprice = 105;
+  const totalPrice = useSelector(selectCartTotalPrice);
 
   return (
     <div className="checkout-box">
@@ -32,7 +33,7 @@ export default function CartOverview() {
 
           <section className="orderview-text">
             <p>TOTAL</p>
-            <span>{totalprice}:-</span>
+            <span>{totalPrice.toFixed(2)}:-</span>
           </section>
         </div>
       </div>

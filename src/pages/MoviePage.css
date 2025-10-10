@@ -16,7 +16,4 @@
 .genreButtons button:hover {
 	box-shadow: 2px 3px 15px rgba(225, 167, 79, 0.7);
 }
-.movie-page {
-  width: 100%;
-  height: 100vh;
-}
+
