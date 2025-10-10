@@ -5,16 +5,17 @@ import './CartDropdown.css';
 
 export default function CartDropdown() {
   const dispatch = useDispatch();
-  const { movies, totalPrice } = useSelector((state) => state.cart);
+  const { movies } = useSelector((state) => state.cart);
+  const totalPrice = useSelector(selectCartTotalPrice);
 
   const handleRemove = (id) => {
     dispatch(removeMovie(id));
   };
 
   return (
-    <div className="cart-dropdown">
+    <div className='cart-dropdown'>
       {movies.length === 0 ? (
-        <p key="empty" className="empty-cart">
+        <p key='empty' className='empty-cart'>
           Your cart is empty... Look for something you'd like first!
         </p>
       ) : (
@@ -23,11 +24,11 @@ export default function CartDropdown() {
           <ul>
             {movies.map((movie) => (
               <li key={movie.id}>
-                <span className="movie-title">{movie.title}</span>
-                <div className="right-section">
-                  <span className="price">{movie.price}:-</span>
+                <span className='movie-title'>{movie.title}</span>
+                <div className='right-section'>
+                  <span className='price'>{movie.price.toFixed(2)}:-</span>
                   <button
-                    className="remove-btn"
+                    className='remove-btn'
                     onClick={() => handleRemove(movie.id)}
                   >
                     <DeleteIcon />
@@ -36,8 +37,8 @@ export default function CartDropdown() {
               </li>
             ))}
           </ul>
-          <p className="total">
-            <strong>Total: {totalPrice} sek</strong>
+          <p className='total'>
+            <strong>Total: {totalPrice.toFixed(2)} sek</strong>
           </p>
         </>
       )}
