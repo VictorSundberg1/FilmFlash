@@ -1,2 +1,4 @@
 export const selectCartTotalPrice = (state) =>
-  state.cart.movies.reduce((sum, movie) => sum + movie.price, 0);
+	state.cart.movies.reduce((sum, movie) => sum + movie.price, 0);
+
+export const selectCartMovies = (state) => state.cart.movies;

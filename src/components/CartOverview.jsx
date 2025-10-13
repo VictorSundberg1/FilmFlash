@@ -1,12 +1,13 @@
 import './CartOverview.css';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router';
-import { selectCartTotalPrice } from '../features/selectors';
+import { selectCartMovies, selectCartTotalPrice } from '../features/selectors';
 
 export default function CartOverview() {
 	const {} = useSelector((state) => state.cart);
 	const navigate = useNavigate();
 	const totalPrice = useSelector(selectCartTotalPrice);
+	const movies = useSelector(selectCartMovies);
 
 	return (
 		<div className='checkout-box'>
@@ -51,7 +52,7 @@ export default function CartOverview() {
 				<button
 					id='buy-btn'
 					onClick={() => {
-						navigate('/receipt');
+						navigate('/receipt', { state: { movies } });
 					}}
 				>
 					BUY
