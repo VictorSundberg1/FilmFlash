@@ -1,3 +1,11 @@
+.mainMovieContainer {
+	display: flex;
+	justify-content: center;
+	align-items: baseline;
+	align-content: center;
+	height: 100%;
+}
+
 .genreButtons {
 	display: flex;
 	justify-content: center;
@@ -16,4 +24,3 @@
 .genreButtons button:hover {
 	box-shadow: 2px 3px 15px rgba(225, 167, 79, 0.7);
 }
-

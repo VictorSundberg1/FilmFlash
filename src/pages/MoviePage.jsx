@@ -65,7 +65,7 @@ function MoviePage() {
 				<button onClick={() => setActiveGenre(10751)}>Family</button>
 			</div>
 
-			<div className='mainContainer'>
+			<div className='mainMovieContainer'>
 				{isLoading ? (
 					<p>Loading Movies...</p>
 				) : (
