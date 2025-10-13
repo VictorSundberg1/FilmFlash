@@ -3,9 +3,11 @@ import { removeMovie } from '../features/cartSlice';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { selectCartTotalPrice } from '../features/selectors';
 import './CartDropdown.css';
+import { useNavigate } from 'react-router';
 
 export default function CartDropdown() {
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const { movies } = useSelector((state) => state.cart);
 	const totalPrice = useSelector(selectCartTotalPrice);
 
@@ -14,9 +16,9 @@ export default function CartDropdown() {
 	};
 
 	return (
-		<div className="cart-dropdown">
+		<div className='cart-dropdown'>
 			{movies.length === 0 ? (
-				<p key="empty" className="empty-cart">
+				<p key='empty' className='empty-cart'>
 					Your cart is empty... Look for something you'd like first!
 				</p>
 			) : (
@@ -25,11 +27,11 @@ export default function CartDropdown() {
 					<ul>
 						{movies.map((movie) => (
 							<li key={movie.id}>
-								<span className="movie-title">{movie.title}</span>
-								<div className="right-section">
-									<span className="price">{movie.price.toFixed(2)}:-</span>
+								<span className='movie-title'>{movie.title}</span>
+								<div className='right-section'>
+									<span className='price'>{movie.price.toFixed(2)}:-</span>
 									<button
-										className="remove-btn"
+										className='remove-btn'
 										onClick={() => handleRemove(movie.id)}
 									>
 										<DeleteIcon />
@@ -38,9 +40,17 @@ export default function CartDropdown() {
 							</li>
 						))}
 					</ul>
-					<p className="total">
-						<strong>Total: {totalPrice.toFixed(2)} sek</strong>
-					</p>
+					<section className='checkout-sect'>
+						<button
+							className='checkout-btn'
+							onClick={() => navigate('/checkout')}
+						>
+							CHECKOUT
+						</button>
+						<p className='total'>
+							<strong>Total: {totalPrice.toFixed(2)} sek</strong>
+						</p>
+					</section>
 				</>
 			)}
 		</div>

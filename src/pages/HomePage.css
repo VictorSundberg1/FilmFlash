@@ -1,7 +1,7 @@
-.mainContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  align-self: center;
-  align-content: center;
+.mainHomeContainer {
+	display: flex;
+	justify-content: center;
+	align-items: baseline;
+	align-content: center;
+	height: 100vh;
 }

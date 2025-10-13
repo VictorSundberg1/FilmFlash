@@ -34,10 +34,10 @@ function MoviePage() {
 		: genreMovies;
 
 	return (
-		<div className="movie-page">
+		<div className='movie-page'>
 			<SearchBar onSearchResult={(state) => setMovieState(state)} />
 
-			<div className="genreButtons">
+			<div className='genreButtons'>
 				<button onClick={() => setActiveGenre(28)}>Action</button>
 				<button onClick={() => setActiveGenre(35)}>Comedy</button>
 				<button onClick={() => setActiveGenre(18)}>Drama</button>
@@ -45,7 +45,7 @@ function MoviePage() {
 				<button onClick={() => setActiveGenre(10751)}>Family</button>
 			</div>
 
-			<div className="mainContainer">
+			<div className='mainMovieContainer'>
 				{isLoading ? (
 					<p>Loading Movies...</p>
 				) : (
