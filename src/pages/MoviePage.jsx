@@ -21,6 +21,14 @@ function MoviePage() {
 	);
 	const isSearching = searchQuery && searchQuery.trim() !== '';
 
+	const categories = [
+		{ id: 28, name: 'Action' },
+		{ id: 35, name: 'Comedy' },
+		{ id: 18, name: 'Drama' },
+		{ id: 27, name: 'Horror' },
+		{ id: 10751, name: 'Family' },
+	];
+
 	const [
 		triggerSearch,
 		{ data: searchData, error: searchError, isLoading: searchIsLoading },
@@ -86,15 +94,23 @@ function MoviePage() {
 		setPage((currentPage) => Math.max(1, currentPage - 1));
 	}
 
-	const moviesToShow = isSearching ? searchData?.results || [] : genreMovies;
-	const isLoading = isSearching ? searchIsLoading : genreIsLoading;
+	const activeCategory = categories.find(
+		(category) => category.id === activeGenre
+	);
+
+	const frameTitle = searchQuery
+		? 'Search Result'
+		: activeCategory?.name || 'Movies';
+
+	//const moviesToShow = isSearching ? searchData?.results || [] : genreMovies;
+	//const isLoading = isSearching ? searchIsLoading : genreIsLoading;
 
 	if (searchQuery && searchError) {
 		return <h1>Something went wrong...</h1>;
 	}
 
 	return (
-		<div className='movie-page'>
+		<div className="movie-page">
 			<SearchBar
 				onSearch={(query) => {
 					if (query === null) {
@@ -107,12 +123,19 @@ function MoviePage() {
 				isLoading={searchIsLoading}
 			/>
 
-			<div className='genreButtons'>
-				<button onClick={() => setActiveGenre(28)}>Action</button>
-				<button onClick={() => setActiveGenre(35)}>Comedy</button>
-				<button onClick={() => setActiveGenre(18)}>Drama</button>
-				<button onClick={() => setActiveGenre(27)}>Horror</button>
-				<button onClick={() => setActiveGenre(10751)}>Family</button>
+			<div className="genreButtons">
+				{categories.map((category) => (
+					<button
+						key={category.id}
+						onClick={() => {
+							setActiveGenre(category.id);
+							setSearchQuery(null);
+						}}
+						className={category.id === activeGenre ? 'activeGenre' : ''}
+					>
+						{category.name}
+					</button>
+				))}
 			</div>
 
 			<div className='mainMovieContainer'>
@@ -123,7 +146,7 @@ function MoviePage() {
 				) : (
 					<MoviesFrame
 						movies={moviesToShow}
-						title={'Movies'}
+						title={frameTitle}
 						page={page}
 						onNextPage={incrementPage}
 						onPrevPage={decrementPage}
