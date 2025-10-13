@@ -7,6 +7,7 @@ export default function CartOverview() {
   const {} = useSelector((state) => state.cart);
   const navigate = useNavigate();
   const totalPrice = useSelector(selectCartTotalPrice);
+  const isCartEmpty = totalPrice === 0;
 
   return (
     <div className="checkout-box">
@@ -52,6 +53,7 @@ export default function CartOverview() {
           onClick={() => {
             navigate('/receipt');
           }}
+          disabled={isCartEmpty}
         >
           BUY
         </button>
