@@ -1,6 +1,6 @@
 import React, { useMemo, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import { clearCart } from '../features/cartSlice';
 import './ReceiptPage.css';
 
@@ -21,7 +21,8 @@ function generateOrderId() {
 export default function ReceiptPage() {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const movies = useSelector((s) => s.cart.movies || []);
+	const location = useLocation();
+	const movies = location.state.movies;
 
 	// calculate totals
 	const totals = useMemo(() => {
@@ -36,9 +37,9 @@ export default function ReceiptPage() {
 	const orderDate = useMemo(() => new Date(), []);
 
 	// Empty cart
-	// useEffect(() => {
-	// dispatch(clearCart());
-	//}, []);
+	useEffect(() => {
+		dispatch(clearCart());
+	}, []);
 
 	return (
 		<div className='receipt-page'>
@@ -94,7 +95,7 @@ export default function ReceiptPage() {
 					</div>
 					<div className='summary-row total'>
 						<strong>Total</strong>
-						<strong>{totals.total.toFixed(2)} kr</strong>
+						<strong>{totals.subtotal.toFixed(2)} kr</strong>
 					</div>
 				</section>
 
