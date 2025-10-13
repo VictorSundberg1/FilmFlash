@@ -18,7 +18,6 @@ export const tmdbApi = createApi({
 			//Lägger till priser i movie-objekten innan de går vidare i appen
 			transformResponse: (response) => addPriceToMovies(response),
 		}),
-
 		//Lägger till filmdetaljer
 		getMovieDetails: build.query({
 			query: (movieId) => `movie/${movieId}?language=en-US`,
@@ -36,13 +35,13 @@ export const tmdbApi = createApi({
 			},
 		}),
 		getSearchResult: build.query({
-			query: ({ query, year }) => {
+			query: ({ query, page = 1, year }) => {
 				//URLSearchParams bygger ett anrop enl standard
 				const searchParams = new URLSearchParams({
 					query,
 					include_adult: 'false',
 					language: 'en-US',
-					page: 1,
+					page: page,
 				});
 				//Finns möjlighet att ta in ett årtal och söka enbart på ett utgivningsår om vi vill i framtiden
 				if (year) searchParams.append('year', year.toString());
