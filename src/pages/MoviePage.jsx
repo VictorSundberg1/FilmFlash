@@ -2,10 +2,13 @@ import { useEffect, useState } from 'react';
 import SearchBar from '../components/SearchBar';
 import './MoviePage.css';
 import MoviesFrame from '../components/MoviesFrame';
-import { useGetMoviesByGenreQuery } from '../features/apiSlice';
+import {
+	useGetMoviesByGenreQuery,
+	useLazyGetSearchResultQuery,
+} from '../features/apiSlice';
 
 function MoviePage() {
-	const [movieState, setMovieState] = useState(null);
+	const [searchQuery, setSearchQuery] = useState(null);
 	const [activeGenre, setActiveGenre] = useState(28);
 	const [page, setPage] = useState(1);
 
@@ -17,15 +20,28 @@ function MoviePage() {
 		{ id: 10751, name: 'Family' },
 	];
 
+	const [
+		triggerSearch,
+		{ data: searchData, error: searchError, isLoading: searchIsLoading },
+	] = useLazyGetSearchResultQuery();
+
 	const { data, isLoading } = useGetMoviesByGenreQuery({
 		genreId: activeGenre,
 		page,
 	});
+
 	const genreMovies = data?.results || [];
 
 	useEffect(() => {
 		setPage(1);
-	}, [activeGenre, movieState]);
+		setSearchQuery(null);
+	}, [activeGenre]);
+
+	useEffect(() => {
+		if (searchQuery) {
+			triggerSearch({ query: searchQuery, page: page });
+		}
+	}, [page]);
 
 	function incrementPage() {
 		setPage((page) => page + 1);
@@ -39,17 +55,25 @@ function MoviePage() {
 		(category) => category.id === activeGenre
 	);
 
-	const frameTitle = movieState
+	const frameTitle = searchQuery
 		? 'Search Result'
 		: activeCategory?.name || 'Movies';
 
-	const moviesToShow = movieState
-		? movieState?.data?.results || []
-		: genreMovies;
+	// const moviesToShow = movieState
+	// 	? movieState?.data?.results || []
+	// 	: genreMovies;
+
+	const moviesToShow = searchQuery ? searchData?.results || [] : genreMovies;
 
 	return (
 		<div className="movie-page">
-			<SearchBar onSearchResult={(state) => setMovieState(state)} />
+			<SearchBar
+				onSearch={(query) => {
+					setSearchQuery(query);
+					triggerSearch({ query: query, page: page });
+				}}
+				isLoading={searchIsLoading}
+			/>
 
 			<div className="genreButtons">
 				{categories.map((category) => (
@@ -57,7 +81,7 @@ function MoviePage() {
 						key={category.id}
 						onClick={() => {
 							setActiveGenre(category.id);
-							setMovieState(null);
+							setSearchQuery(null);
 						}}
 						className={category.id === activeGenre ? 'activeGenre' : ''}
 					>
