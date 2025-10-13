@@ -90,7 +90,7 @@ function MoviePage() {
 				))}
 			</div>
 
-			<div className="mainContainer">
+			<div className='mainMovieContainer'>
 				{isLoading ? (
 					<p>Loading Movies...</p>
 				) : (

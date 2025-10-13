@@ -1,3 +1,11 @@
+.mainMovieContainer {
+	display: flex;
+	justify-content: center;
+	align-items: baseline;
+	align-content: center;
+	height: 100%;
+}
+
 .genreButtons {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
