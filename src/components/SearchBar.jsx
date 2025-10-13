@@ -1,58 +1,53 @@
 import { useEffect, useState } from 'react';
 import './SearchBar.css';
-import { useLazyGetSearchResultQuery } from '../features/apiSlice';
 import IconButton from '@mui/material/IconButton';
 import CircularProgress from '@mui/material/CircularProgress';
 import SearchIcon from '@mui/icons-material/Search';
 
 /**
- * SearchBar component allows a user to search the MovieDB API for movies.
- * Displays a loading indicator on the search button while fetching results.
+ * SearchBar component for searching movies.
  *
- * @param {Object} props
- * @param {(result: { data?: any, error?: object }) => void} props.onSearchResult
- * Callback called when a search completes, containing the state of the search (data or error).
+ * @component
+ * @param {Object} props - Component props.
+ * @param {(query: string|null) => void} props.onSearch - Callback function invoked when a search is performed or the search field is cleared (null).
+ * @param {boolean} props.isLoading - Indicates if a search request is in progress; disables input and shows a loading indicator.
+ *
+ * @example
+ * <SearchBar onSearch={(query) => handleSearch(query)} isLoading={loading} />
  */
-function SearchBar({ onSearchResult }) {
+function SearchBar({ onSearch, isLoading }) {
 	const [query, setQuery] = useState('');
-	const [triggerSearch, { data, error, isLoading }] =
-		useLazyGetSearchResultQuery();
 
-	useEffect(() => {
-		if (data || error) {
-			onSearchResult({ data, error });
-		}
-	}, [data, error, isLoading]);
-
-	//Returnerar null ifall sökfältet töms för att kunna visa kategorier igen
+	// Returnerar null ifall sökfältet töms för att kunna visa kategorier igen
 	useEffect(() => {
 		if (query === '') {
-			onSearchResult && onSearchResult(null);
+			onSearch(null);
 		}
-	}, [query, onSearchResult]);
+	}, [query]);
 
-	const doSearch = () => {
+	const handleSearch = () => {
 		const q = query.trim();
-		if (!q) return;
-		triggerSearch({ query: q });
+		if (!q && isLoading) return;
+		console.log('Query: ', q);
+		onSearch(q);
 	};
 
 	return (
-		<div className="search-bar">
+		<div className='search-bar'>
 			<input
-				placeholder="Search movies..."
-				type="search"
+				placeholder='Search movies...'
+				type='search'
 				value={query}
 				onChange={(e) => setQuery(e.target.value)}
 				onKeyDown={(event) => {
-					if (event.key === 'Enter' && query.trim() !== '' && !isLoading) {
-						doSearch();
+					if (event.key === 'Enter') {
+						handleSearch();
 					}
 				}}
 			/>
 			<IconButton
-				className="icon-button"
-				onClick={() => triggerSearch({ query })}
+				className='icon-button'
+				onClick={() => handleSearch()}
 				disabled={query.trim() === ''}
 				loadingIndicator={<CircularProgress />}
 				loading={isLoading}
