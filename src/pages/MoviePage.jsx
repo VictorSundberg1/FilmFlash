@@ -9,13 +9,19 @@ function MoviePage() {
 	const [activeGenre, setActiveGenre] = useState(28);
 	const [page, setPage] = useState(1);
 
+	const categories = [
+		{ id: 28, name: 'Action' },
+		{ id: 35, name: 'Comedy' },
+		{ id: 18, name: 'Drama' },
+		{ id: 27, name: 'Horror' },
+		{ id: 10751, name: 'Family' },
+	];
+
 	const { data, isLoading } = useGetMoviesByGenreQuery({
 		genreId: activeGenre,
 		page,
 	});
 	const genreMovies = data?.results || [];
-
-	// if (movieState?.error) return <h1>Something went wrong...</h1>;
 
 	useEffect(() => {
 		setPage(1);
@@ -29,6 +35,14 @@ function MoviePage() {
 		setPage((page) => Math.max(1, page - 1));
 	}
 
+	const activeCategory = categories.find(
+		(category) => category.id === activeGenre
+	);
+
+	const frameTitle = movieState
+		? 'Search Result'
+		: activeCategory?.name || 'Movies';
+
 	const moviesToShow = movieState
 		? movieState?.data?.results || []
 		: genreMovies;
@@ -38,11 +52,18 @@ function MoviePage() {
 			<SearchBar onSearchResult={(state) => setMovieState(state)} />
 
 			<div className="genreButtons">
-				<button onClick={() => setActiveGenre(28)}>Action</button>
-				<button onClick={() => setActiveGenre(35)}>Comedy</button>
-				<button onClick={() => setActiveGenre(18)}>Drama</button>
-				<button onClick={() => setActiveGenre(27)}>Horror</button>
-				<button onClick={() => setActiveGenre(10751)}>Family</button>
+				{categories.map((category) => (
+					<button
+						key={category.id}
+						onClick={() => {
+							setActiveGenre(category.id);
+							setMovieState(null);
+						}}
+						className={category.id === activeGenre ? 'activeGenre' : ''}
+					>
+						{category.name}
+					</button>
+				))}
 			</div>
 
 			<div className="mainContainer">
@@ -51,7 +72,7 @@ function MoviePage() {
 				) : (
 					<MoviesFrame
 						movies={moviesToShow}
-						title={'Movies'}
+						title={frameTitle}
 						page={page}
 						onNextPage={incrementPage}
 						onPrevPage={decrementPage}
