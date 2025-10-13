@@ -41,7 +41,7 @@ export const tmdbApi = createApi({
 					query,
 					include_adult: 'false',
 					language: 'en-US',
-					page: page,
+					page,
 				});
 				//Finns möjlighet att ta in ett årtal och söka enbart på ett utgivningsår om vi vill i framtiden
 				if (year) searchParams.append('year', year.toString());
