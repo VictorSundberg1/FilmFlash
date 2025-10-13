@@ -18,16 +18,17 @@ export default function CartOverview() {
 
 					<section className='orderview-content'>
 						<div className='order-row'>
-							<p>Discount</p>
-							<span>0:-</span>
-						</div>
-						<div className='order-row'>
 							<p>Payment</p>
 							<span>Card</span>
 						</div>
 						<div className='order-row'>
-							<p>Moms</p>
-							<span>12%</span>
+							<p>Discount</p>
+							<span>0:-</span>
+						</div>
+
+						<div className='order-row'>
+							<p>Tax (12%)</p>
+							<span>{(0.12 * totalPrice).toFixed(2)}:-</span>
 						</div>
 					</section>
 
