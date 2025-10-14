@@ -102,8 +102,8 @@ function MoviePage() {
 		? 'Search Result'
 		: activeCategory?.name || 'Movies';
 
-	//const moviesToShow = isSearching ? searchData?.results || [] : genreMovies;
-	//const isLoading = isSearching ? searchIsLoading : genreIsLoading;
+	const moviesToShow = isSearching ? searchData?.results || [] : genreMovies;
+	const isLoading = isSearching ? searchIsLoading : genreIsLoading;
 
 	if (searchQuery && searchError) {
 		return <h1>Something went wrong...</h1>;
@@ -138,7 +138,7 @@ function MoviePage() {
 				))}
 			</div>
 
-			<div className='mainMovieContainer'>
+			<div className="mainMovieContainer">
 				{isLoading ? (
 					<p>Loading Movies...</p>
 				) : searchQuery && moviesToShow.length === 0 ? (
