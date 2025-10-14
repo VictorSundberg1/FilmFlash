@@ -142,7 +142,10 @@ function MoviePage() {
 				{isLoading ? (
 					<p>Loading Movies...</p>
 				) : searchQuery && moviesToShow.length === 0 ? (
-					<p>no movies found</p>
+					<div className="noSearchResult">
+						<h3>No Results From Search!</h3>
+						<p>Try Again With New Title!</p>
+					</div>
 				) : (
 					<MoviesFrame
 						movies={moviesToShow}

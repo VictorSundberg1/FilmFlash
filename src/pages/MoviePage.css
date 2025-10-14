@@ -34,6 +34,21 @@
 .genreButtons .activeGenre:hover {
 	box-shadow: var(--shadow);
 }
+
+.noSearchResult {
+	margin-top: 10px;
+	background: var(--cardgrey);
+	border-radius: 16px;
+	padding: 6px 18px;
+	border: 1px solid var(--lightgrey);
+}
+.noSearchResult p {
+	font-size: var(--font-size-base);
+	font-weight: 600;
+	text-align: center;
+	opacity: 0.8;
+}
+
 @media (max-width: 520px) {
 	.genreButtons {
 		gap: 2px;
