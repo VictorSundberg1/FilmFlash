@@ -63,6 +63,8 @@
 }
 
 .back-btn {
+	width: 3rem;
+	height: 2rem;
 	background-color: var(--darkgold);
 	border-radius: 0.8rem;
 	cursor: pointer;
@@ -70,6 +72,7 @@
 	transition: background-color 0.3s ease;
 	align-self: flex-start;
 	margin-left: 0.5rem;
+	font-size: var(--font-size-xl);
 }
 
 .back-btn:hover {
