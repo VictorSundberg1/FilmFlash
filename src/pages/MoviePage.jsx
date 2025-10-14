@@ -86,7 +86,7 @@ function MoviePage() {
 
 	function incrementPage() {
 		window.scrollTo({ top: 0, behavior: 'smooth' });
-		setPage((currentPage) => currentPage + 1);
+		setPage((currentPage) => Math.min(currentPage + 1, totalPages));
 	}
 
 	function decrementPage() {
@@ -104,13 +104,17 @@ function MoviePage() {
 
 	const moviesToShow = isSearching ? searchData?.results || [] : genreMovies;
 	const isLoading = isSearching ? searchIsLoading : genreIsLoading;
+	const totalPages = isSearching
+		? searchData?.total_pages || 1
+		: data?.total_pages || 1;
+	const totalResults = isSearching ? searchData?.total_results : null;
 
 	if (searchQuery && searchError) {
 		return <h1>Something went wrong...</h1>;
 	}
 
 	return (
-		<div className="movie-page">
+		<div className='movie-page'>
 			<SearchBar
 				onSearch={(query) => {
 					if (query === null) {
@@ -123,7 +127,7 @@ function MoviePage() {
 				isLoading={searchIsLoading}
 			/>
 
-			<div className="genreButtons">
+			<div className='genreButtons'>
 				{categories.map((category) => (
 					<button
 						key={category.id}
@@ -138,7 +142,7 @@ function MoviePage() {
 				))}
 			</div>
 
-			<div className="mainMovieContainer">
+			<div className='mainMovieContainer'>
 				{isLoading ? (
 					<p>Loading Movies...</p>
 				) : searchQuery && moviesToShow.length === 0 ? (
@@ -150,7 +154,9 @@ function MoviePage() {
 					<MoviesFrame
 						movies={moviesToShow}
 						title={frameTitle}
+						totalPages={totalPages}
 						page={page}
+						totalResults={totalResults}
 						onNextPage={incrementPage}
 						onPrevPage={decrementPage}
 					/>
