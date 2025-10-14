@@ -5,7 +5,7 @@
 	background-color: var(--darkgrey);
 	border: 1px solid var(--darkgold);
 	border-radius: 0.5rem;
-	padding: 2rem;
+	padding: 1.5rem;
 	min-width: 250px;
 	z-index: 1000;
 	box-shadow: var(--shadow);
@@ -106,7 +106,10 @@
 
 .empty-cart {
 	text-align: center;
+	justify-self: center;
 	font-style: italic;
 	color: lightgray;
 	overflow-wrap: break-word;
+	word-break: break-word;
+	max-width: 70%;
 }
