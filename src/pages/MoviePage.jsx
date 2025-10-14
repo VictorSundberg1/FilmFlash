@@ -45,18 +45,31 @@ function MoviePage() {
 
 	const genreMovies = data?.results || [];
 
-	//när sida ändras uppdateras url (q eller genre)
+	//url uppdateras baserat på state, tar bort genre vid egen sökning och hanterar rensning/växling av kategori utan att overridea över varandra
 	useEffect(() => {
-		setSearchParams((params) => {
-			params.set('page', page.toString());
-			if (searchQuery) {
+		if (searchQuery) {
+			setSearchParams((params) => {
 				params.set('q', searchQuery);
-			} else {
-				params.set('genre', activeGenre.toString());
-			}
+				params.set('page', page.toString());
+				params.delete('genre');
+				return params;
+			});
+			return;
+		}
+
+	//annars sätter genre och sida, reset till sida 1 om ny genre blir vald
+		const newPage =
+			activeGenre !== (parseInt(searchParams.get('genre')) || 28) ? 1 : page;
+		if (newPage !== page) {
+			setPage(newPage);
+		}
+		setSearchParams((params) => {
+			params.set('genre', activeGenre.toString());
+			params.set('page', newPage.toString());
+			params.delete('q');
 			return params;
 		});
-	}, [page, activeGenre, searchQuery, setSearchParams]);
+	}, [page, activeGenre, searchQuery, setSearchParams, searchParams]);
 
 	//Sök start eller sida ändring
 	useEffect(() => {
@@ -64,25 +77,6 @@ function MoviePage() {
 			triggerSearch({ query: searchQuery, page });
 		}
 	}, [searchQuery, page, triggerSearch, isSearching]);
-
-	//resettar sidan vid genre ändring
-	useEffect(() => {
-		if (!isSearching) {
-			setPage(1);
-			setSearchParams({ genre: activeGenre.toString(), page: '1' });
-		}
-	}, [activeGenre, setSearchParams, isSearching]);
-
-	//Återställer url vid rensning av sökfält
-	useEffect(() => {
-		if (!isSearching) {
-			const urlGenre = parseInt(searchParams.get('genre')) || 28;
-			const urlPage = parseInt(searchParams.get('page')) || 1;
-			setActiveGenre(urlGenre);
-			setPage(urlPage);
-			setSearchParams({ genre: urlGenre.toString(), page: urlPage.toString() });
-		}
-	}, [setSearchParams, isSearching, searchParams]);
 
 	function incrementPage() {
 		window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -102,15 +96,15 @@ function MoviePage() {
 		? 'Search Result'
 		: activeCategory?.name || 'Movies';
 
-	//const moviesToShow = isSearching ? searchData?.results || [] : genreMovies;
-	//const isLoading = isSearching ? searchIsLoading : genreIsLoading;
+	const moviesToShow = isSearching ? searchData?.results || [] : genreMovies;
+	const isLoading = isSearching ? searchIsLoading : genreIsLoading;
 
 	if (searchQuery && searchError) {
 		return <h1>Something went wrong...</h1>;
 	}
 
 	return (
-		<div className="movie-page">
+		<div className='movie-page'>
 			<SearchBar
 				onSearch={(query) => {
 					if (query === null) {
@@ -123,7 +117,7 @@ function MoviePage() {
 				isLoading={searchIsLoading}
 			/>
 
-			<div className="genreButtons">
+			<div className='genreButtons'>
 				{categories.map((category) => (
 					<button
 						key={category.id}

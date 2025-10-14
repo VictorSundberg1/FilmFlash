@@ -12,7 +12,7 @@ export default function DetailCard({ movie }) {
 		dispatch(addMovie(movie));
 	};
 
-	//Hämtar director från credits i queryn
+	//Hämtar director från credits i queryn när movie id finns för att undvika onödiga anrop
 	const { data: credits } = useGetMovieCreditsQuery(movie.id, {
 		skip: !movie.id,
 	});
@@ -39,9 +39,10 @@ export default function DetailCard({ movie }) {
 			<section className='about-film'>
 				<h3>About</h3>
 				<span className='film-details'>
-					{movie.release_date} ‣{' '}
+					{movie.runtime} min ‣{' '}
 					{movie.genres?.map((genre) => genre.name).join(', ')} ‣{' '}
-					{movie.vote_average}/10
+					{movie.release_date} <br />
+					Rate: {movie.vote_average}/10
 				</span>
 				<p className='film-desc'>{movie.overview}</p>
 
