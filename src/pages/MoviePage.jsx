@@ -132,7 +132,7 @@ function MoviePage() {
 				))}
 			</div>
 
-			<div className='mainMovieContainer'>
+			<div className="mainMovieContainer">
 				{isLoading ? (
 					<p>Loading Movies...</p>
 				) : searchQuery && moviesToShow.length === 0 ? (

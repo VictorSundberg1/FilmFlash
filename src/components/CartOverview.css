@@ -86,6 +86,22 @@
   box-shadow: var(--shadow);
 }
 
+#buy-btn:disabled {
+  background-color: grey;
+  border: 1px solid grey;
+  color: #ccc;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+#buy-btn:disabled:hover {
+  background-color: grey;
+  color: #ccc;
+  transform: none;
+  box-shadow: none;
+}
+
 #explore-btn {
   background-color: transparent;
   border: none;

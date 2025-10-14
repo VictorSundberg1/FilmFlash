@@ -7,6 +7,8 @@
 	background: var(--lightgold);
 	width: 50%;
 	justify-self: center;
+	margin-right: auto;
+	margin-left: auto;
 }
 
 .search-bar input {
