@@ -24,13 +24,21 @@
 	opacity: 0.8;
 	font-size: var(--font-size-sm);
 	flex: 1 1 auto;
+	max-height: 150px;
+
+	display: -webkit-box;
+	-webkit-line-clamp: 10;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
 }
 
 .movieCardPoster {
 	width: 35%;
 	border-radius: 8px;
-	object-fit: cover;
+	object-fit: scale-down;
+	align-self: flex-start;
 	margin-right: 8px;
+	margin-top: 8px;
 }
 .movieCardLink {
 	text-decoration: none;
@@ -59,5 +67,20 @@
 		height: 100%;
 		box-sizing: border-box;
 		border: 2px solid var(--lightgrey);
+	}
+
+	.movieCardPoster {
+		margin: 2px;
+	}
+
+	.movieCardTitle {
+		font-size: var(--font-size-xl);
+	}
+
+	.movieCardOverview {
+		max-height: 85px;
+		-webkit-line-clamp: 6;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
 	}
 }

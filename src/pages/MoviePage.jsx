@@ -6,72 +6,147 @@ import {
 	useGetMoviesByGenreQuery,
 	useLazyGetSearchResultQuery,
 } from '../features/apiSlice';
+import { useSearchParams } from 'react-router';
 
 function MoviePage() {
-	const [searchQuery, setSearchQuery] = useState(null);
-	const [activeGenre, setActiveGenre] = useState(28);
-	const [page, setPage] = useState(1);
+	const [searchParams, setSearchParams] = useSearchParams();
+	const [searchQuery, setSearchQuery] = useState(
+		() => searchParams.get('q') || null
+	);
+	const [activeGenre, setActiveGenre] = useState(
+		() => parseInt(searchParams.get('genre')) || 28
+	);
+	const [page, setPage] = useState(
+		() => parseInt(searchParams.get('page')) || 1
+	);
+	const isSearching = searchQuery && searchQuery.trim() !== '';
+
+	const categories = [
+		{ id: 28, name: 'Action' },
+		{ id: 35, name: 'Comedy' },
+		{ id: 18, name: 'Drama' },
+		{ id: 27, name: 'Horror' },
+		{ id: 10751, name: 'Family' },
+	];
 
 	const [
 		triggerSearch,
 		{ data: searchData, error: searchError, isLoading: searchIsLoading },
 	] = useLazyGetSearchResultQuery();
 
-	const { data, isLoading } = useGetMoviesByGenreQuery({
-		genreId: activeGenre,
-		page,
-	});
+	//söker på aktiv vald genre men skippar genre vid egen sökning
+	const { data, isLoading: genreIsLoading } = useGetMoviesByGenreQuery(
+		{
+			genreId: activeGenre,
+			page,
+		},
+		{ skip: !!searchQuery }
+	);
 
 	const genreMovies = data?.results || [];
 
-	// if (movieState?.error) return <h1>Something went wrong...</h1>;
-
+	//när sida ändras uppdateras url (q eller genre)
 	useEffect(() => {
-		setPage(1);
-		setSearchQuery(null);
-	}, [activeGenre]);
+		setSearchParams((params) => {
+			params.set('page', page.toString());
+			if (searchQuery) {
+				params.set('q', searchQuery);
+			} else {
+				params.set('genre', activeGenre.toString());
+			}
+			return params;
+		});
+	}, [page, activeGenre, searchQuery, setSearchParams]);
 
+	//Sök start eller sida ändring
 	useEffect(() => {
-		if (searchQuery) {
-			triggerSearch({ query: searchQuery, page: page });
+		if (isSearching) {
+			triggerSearch({ query: searchQuery, page });
 		}
-	}, [page]);
+	}, [searchQuery, page, triggerSearch, isSearching]);
+
+	//resettar sidan vid genre ändring
+	useEffect(() => {
+		if (!isSearching) {
+			setPage(1);
+			setSearchParams({ genre: activeGenre.toString(), page: '1' });
+		}
+	}, [activeGenre, setSearchParams, isSearching]);
+
+	//Återställer url vid rensning av sökfält
+	useEffect(() => {
+		if (!isSearching) {
+			const urlGenre = parseInt(searchParams.get('genre')) || 28;
+			const urlPage = parseInt(searchParams.get('page')) || 1;
+			setActiveGenre(urlGenre);
+			setPage(urlPage);
+			setSearchParams({ genre: urlGenre.toString(), page: urlPage.toString() });
+		}
+	}, [setSearchParams, isSearching, searchParams]);
 
 	function incrementPage() {
-		setPage((page) => page + 1);
+		window.scrollTo({ top: 0, behavior: 'smooth' });
+		setPage((currentPage) => currentPage + 1);
 	}
 
 	function decrementPage() {
-		setPage((page) => Math.max(1, page - 1));
+		window.scrollTo({ top: 0, behavior: 'smooth' });
+		setPage((currentPage) => Math.max(1, currentPage - 1));
 	}
 
-	const moviesToShow = searchQuery ? searchData?.results || [] : genreMovies;
+	const activeCategory = categories.find(
+		(category) => category.id === activeGenre
+	);
+
+	const frameTitle = searchQuery
+		? 'Search Result'
+		: activeCategory?.name || 'Movies';
+
+	const moviesToShow = isSearching ? searchData?.results || [] : genreMovies;
+	const isLoading = isSearching ? searchIsLoading : genreIsLoading;
+
+	if (searchQuery && searchError) {
+		return <h1>Something went wrong...</h1>;
+	}
 
 	return (
-		<div className='movie-page'>
+		<div className="movie-page">
 			<SearchBar
 				onSearch={(query) => {
-					setSearchQuery(query);
-					triggerSearch({ query: query, page: page });
+					if (query === null) {
+						setSearchQuery(null);
+					} else {
+						setSearchQuery(query);
+						setPage(1);
+					}
 				}}
 				isLoading={searchIsLoading}
 			/>
 
-			<div className='genreButtons'>
-				<button onClick={() => setActiveGenre(28)}>Action</button>
-				<button onClick={() => setActiveGenre(35)}>Comedy</button>
-				<button onClick={() => setActiveGenre(18)}>Drama</button>
-				<button onClick={() => setActiveGenre(27)}>Horror</button>
-				<button onClick={() => setActiveGenre(10751)}>Family</button>
+			<div className="genreButtons">
+				{categories.map((category) => (
+					<button
+						key={category.id}
+						onClick={() => {
+							setActiveGenre(category.id);
+							setSearchQuery(null);
+						}}
+						className={category.id === activeGenre ? 'activeGenre' : ''}
+					>
+						{category.name}
+					</button>
+				))}
 			</div>
 
-			<div className='mainContainer'>
+			<div className="mainMovieContainer">
 				{isLoading ? (
 					<p>Loading Movies...</p>
+				) : searchQuery && moviesToShow.length === 0 ? (
+					<p>no movies found</p>
 				) : (
 					<MoviesFrame
 						movies={moviesToShow}
-						title={'Movies'}
+						title={frameTitle}
 						page={page}
 						onNextPage={incrementPage}
 						onPrevPage={decrementPage}

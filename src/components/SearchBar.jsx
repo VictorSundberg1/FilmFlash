@@ -3,6 +3,7 @@ import './SearchBar.css';
 import IconButton from '@mui/material/IconButton';
 import CircularProgress from '@mui/material/CircularProgress';
 import SearchIcon from '@mui/icons-material/Search';
+import { useSearchParams } from 'react-router';
 
 /**
  * SearchBar component for searching movies.
@@ -16,14 +17,28 @@ import SearchIcon from '@mui/icons-material/Search';
  * <SearchBar onSearch={(query) => handleSearch(query)} isLoading={loading} />
  */
 function SearchBar({ onSearch, isLoading }) {
-	const [query, setQuery] = useState('');
+	const [searchParams, setSearchParams] = useSearchParams();
+	const [query, setQuery] = useState(() => searchParams.get('q') || '');
 
 	// Returnerar null ifall sökfältet töms för att kunna visa kategorier igen
+	useEffect(() => {
+		if (query !== searchParams.get('q')) {
+			setSearchParams((params) => {
+				if (query.trim() === '') {
+					params.delete('q');
+				} else {
+					params.set('q', query);
+				}
+				return params;
+			});
+		}
+	}, [query, searchParams, setSearchParams]);
+
 	useEffect(() => {
 		if (query === '') {
 			onSearch(null);
 		}
-	}, [query]);
+	}, [query, onSearch]);
 
 	const handleSearch = () => {
 		const q = query.trim();

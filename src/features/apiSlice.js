@@ -18,10 +18,21 @@ export const tmdbApi = createApi({
 			//Lägger till priser i movie-objekten innan de går vidare i appen
 			transformResponse: (response) => addPriceToMovies(response),
 		}),
-
+		//Lägger till filmdetaljer
 		getMovieDetails: build.query({
 			query: (movieId) => `movie/${movieId}?language=en-US`,
 			transformResponse: (response) => addPriceToSingleMovie(response),
+		}),
+		//Lägger till filmdirector
+		getMovieCredits: build.query({
+			query: (movieId) => `movie/${movieId}/credits?language=en-US`,
+			transformResponse: (response) => {
+				const director = response.crew.find((crew) => crew.job === 'Director');
+				return {
+					...response,
+					director,
+				};
+			},
 		}),
 		getSearchResult: build.query({
 			query: ({ query, page = 1, year }) => {
@@ -30,7 +41,7 @@ export const tmdbApi = createApi({
 					query,
 					include_adult: 'false',
 					language: 'en-US',
-					page: page,
+					page,
 				});
 				//Finns möjlighet att ta in ett årtal och söka enbart på ett utgivningsår om vi vill i framtiden
 				if (year) searchParams.append('year', year.toString());
@@ -73,4 +84,5 @@ export const {
 	useLazyGetSearchResultQuery,
 	useGetMoviesByGenreQuery,
 	useGetMovieDetailsQuery,
+	useGetMovieCreditsQuery,
 } = tmdbApi;
