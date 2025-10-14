@@ -14,11 +14,19 @@
 	border-radius: 12px;
 }
 .containerTitle {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 	color: var(--darkgold);
-	margin-left: 20px;
+	margin: 0px 20px;
 	font-size: var(--font-size-lg);
 	text-shadow: 0 2px 4px rgba(255, 209, 141, 0.4);
 }
+
+/* .containerTitle p {
+	color: var(--white);
+	text-shadow: none;
+} */
 .pageSection {
 	display: flex;
 	flex-direction: row;
