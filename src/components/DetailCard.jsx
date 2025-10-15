@@ -2,6 +2,8 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import { addMovie } from '../features/cartSlice';
 import { useGetMovieCreditsQuery } from '../features/apiSlice';
+import defaultImage from '../assets/defaultImage.svg';
+import transparent from '../assets/transparent.svg';
 
 export default function DetailCard({ movie }) {
 	const navigate = useNavigate();
@@ -24,6 +26,10 @@ export default function DetailCard({ movie }) {
 				<img
 					className='film-img'
 					src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+					onError={(e) => {
+						e.target.onerror = null;
+						e.target.src = defaultImage;
+					}}
 					alt='moviecover'
 				/>
 				<button className='back-btn' onClick={() => navigate(-1)}>
@@ -32,6 +38,11 @@ export default function DetailCard({ movie }) {
 				<img
 					className='bd-film-img'
 					src={`https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`}
+					onError={(e) => {
+						e.target.onerror = null;
+						e.target.style.boxShadow = 'none';
+						e.target.src = transparent;
+					}}
 					alt='moviebackground'
 				/>
 			</section>
