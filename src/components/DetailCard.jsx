@@ -21,6 +21,9 @@ export default function DetailCard({ movie }) {
 
 	return (
 		<div className='div-container'>
+			<button className='back-btn' onClick={() => navigate(-1)}>
+					🔙
+				</button>
 			<h3 className='film-title'>{movie.title}</h3>
 			<section className='title-img'>
 				<img
@@ -32,9 +35,6 @@ export default function DetailCard({ movie }) {
 					}}
 					alt='moviecover'
 				/>
-				<button className='back-btn' onClick={() => navigate(-1)}>
-					🔙
-				</button>
 				<img
 					className='bd-film-img'
 					src={`https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`}

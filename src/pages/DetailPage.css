@@ -38,7 +38,7 @@
 	font-size: var(--font-size-2xl);
 	font-weight: bold;
 	z-index: 4;
-	margin-left: 1rem;
+	margin-left: 6rem;
 }
 
 .film-img {
@@ -75,8 +75,8 @@
 	transition: background-color 0.3s ease;
 	/* align-self: flex-start; */
 	position: absolute;
-	bottom: 0px;
-	left: 0px;
+	top: 7%;
+	left: 2%;
 	margin-left: 0.5rem;
 	font-size: var(--font-size-xl);
 }
@@ -221,6 +221,10 @@
 		z-index: 1;
 	}
 
+	.film-title{
+		margin-left: 0;
+	}
+
 	.film-img {
 		width: 30%;
 		max-width: 75vh;
@@ -241,9 +245,8 @@
 
 	.back-btn {
 		position: absolute;
-		right: 10%;
-		bottom: 15%;
-		left: auto;
-		align-self: flex-end;
+		top: 4%;
+		left: 3%;
+		align-self: flex-start;
 	}
 }
