@@ -220,9 +220,10 @@ nav a:hover {
 		height: 14px;
 	}
 
-	.inner{
+	.inner {
 		justify-content: space-around;
 		margin-left: 10rem;
+		padding: 0;
 	}
 
 	.filmStrip,
