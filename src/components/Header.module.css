@@ -196,6 +196,7 @@ nav a:hover {
 
 	.hamburger {
 		display: flex;
+		margin-top: 1rem;
 	}
 
 	.showMenu {
@@ -206,7 +207,7 @@ nav a:hover {
 @media (max-width: 414px) {
 	.cart {
 		font-size: var(--font-size-xs);
-		margin-top: 16px;
+		margin-top: 1rem;
 		width: 30px;
 		height: 30px;
 	}
@@ -217,6 +218,11 @@ nav a:hover {
 		font-size: 10px;
 		width: 14px;
 		height: 14px;
+	}
+
+	.inner{
+		justify-content: space-around;
+		margin-left: 10rem;
 	}
 
 	.filmStrip,
