@@ -94,7 +94,7 @@ function MoviePage() {
 	);
 
 	const frameTitle = searchQuery
-		? `${searchQuery}` || 'Search Result'
+		? `Results for: ${searchQuery}` || 'Search Result'
 		: activeCategory?.name || 'Movies';
 
 	const moviesToShow = isSearching ? searchData?.results || [] : genreMovies;
