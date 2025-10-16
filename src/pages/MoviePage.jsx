@@ -27,6 +27,7 @@ function MoviePage() {
 		{ id: 18, name: 'Drama' },
 		{ id: 27, name: 'Horror' },
 		{ id: 10751, name: 'Family' },
+		{ id: 16, name: 'Animation' },
 	];
 
 	const [
@@ -57,7 +58,7 @@ function MoviePage() {
 			return;
 		}
 
-	//annars sätter genre och sida, reset till sida 1 om ny genre blir vald
+		//annars sätter genre och sida, reset till sida 1 om ny genre blir vald
 		const newPage =
 			activeGenre !== (parseInt(searchParams.get('genre')) || 28) ? 1 : page;
 		if (newPage !== page) {
@@ -93,7 +94,7 @@ function MoviePage() {
 	);
 
 	const frameTitle = searchQuery
-		? 'Search Result'
+		? `${searchQuery}` || 'Search Result'
 		: activeCategory?.name || 'Movies';
 
 	const moviesToShow = isSearching ? searchData?.results || [] : genreMovies;
@@ -140,7 +141,7 @@ function MoviePage() {
 				{isLoading ? (
 					<p>Loading Movies...</p>
 				) : searchQuery && moviesToShow.length === 0 ? (
-					<div className="noSearchResult">
+					<div className='noSearchResult'>
 						<h3>No Results From Search!</h3>
 						<p>Try Again With New Title!</p>
 					</div>

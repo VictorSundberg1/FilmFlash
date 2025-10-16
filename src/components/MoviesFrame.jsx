@@ -13,7 +13,7 @@ function MoviesFrame({
 }) {
 	const limitedMovies = limit ? movies.slice(0, limit) : movies;
 	const totalResultsDisplay = totalResults ? (
-		<p>Total: {totalResults}</p>
+		<p>Results: {totalResults}</p>
 	) : null;
 
 	return (
