@@ -73,7 +73,10 @@
 	cursor: pointer;
 	z-index: 5;
 	transition: background-color 0.3s ease;
-	align-self: flex-start;
+	/* align-self: flex-start; */
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
 	margin-left: 0.5rem;
 	font-size: var(--font-size-xl);
 }
@@ -240,5 +243,7 @@
 		position: absolute;
 		right: 10%;
 		bottom: 15%;
+		left: auto;
+		align-self: flex-end;
 	}
 }
