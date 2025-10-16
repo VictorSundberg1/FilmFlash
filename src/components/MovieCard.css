@@ -61,7 +61,7 @@
 	.movieCard {
 		background-color: var(--cardgrey);
 		border-radius: 12px;
-		padding: 16px;
+		padding: 8px;
 		display: flex;
 		flex-direction: column;
 		height: 100%;
@@ -71,10 +71,19 @@
 
 	.movieCardPoster {
 		margin: 2px;
+		margin-left: 12px;
 	}
 
 	.movieCardTitle {
 		font-size: var(--font-size-xl);
+	}
+
+	.movieCardPriceTag {
+		font-size: var(--font-size-lg);
+		color: var(--darkgold);
+		align-self: flex-end;
+		padding: 2px 8px;
+		margin: 0;
 	}
 
 	.movieCardOverview {
